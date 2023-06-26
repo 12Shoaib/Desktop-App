@@ -17,15 +17,16 @@ app.on("activate", function () {
 });
 function createWindow() {
   mainWindow = new BrowserWindow({
-    width: 1024,
-    height: 1024,
-    title: "Desktop App",
+    width: 600,
+    height: 400,
+    title: "My-First-Electron",
     webPreferences:{
       nodeIntegration:true,
       contextIsolation: false
     }
   });
-  console.log(`dirName : ${path.join(__dirname, '../build/index.html')}`)
+  const indexPath = isDev ? 'http://localhost:3000' : `${path.join(__dirname, '../build/index.html')}`
+  console.log(indexPath)
   mainWindow.loadURL(isDev ? 'http://localhost:3000' : `${path.join(__dirname, '../build/index.html')}`);
   mainWindow.on("closed", function () {
     mainWindow = null;
@@ -36,3 +37,4 @@ function createWindow() {
 
   mainWindow.webContents.openDevTools()
 }
+
